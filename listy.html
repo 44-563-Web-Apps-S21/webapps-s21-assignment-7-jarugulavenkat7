@@ -39,27 +39,32 @@
 	
 </body>
 <script>
-	function makeNewDiv(){
-		/* make the div and its text */
-		let element = document.createElement("div")
-		element.innerHTML = document.getElementById("newItem").value
-		element.className = "listy";
-		var listyItems = document.getElementsByClassName("listy");
-		
-if(listyItems.length>8){
-	for(let listyItem of listyItems){
-		if(element.innerHTML==listyItem){
-			listyItem.remove();
-			console.log("Removing duplicate element"+ listyItem);
-		}
-		else{
-			listyItems[0].remove();
-		}
-	}
-}
-		/* add it to the container */
-		document.getElementById('target').appendChild(element)
-		
-	}
+    
+	function makeNewDiv() {
+        const element = document.createElement("div");
+        element.innerHTML = document.getElementById("newItem").value;
+        element.setAttribute('class', 'listy');
+        element.style.color = "green";
+
+        let listyItems = document.getElementsByClassName("listy");
+        len = listyItems.length;
+        var k = 0;
+        if (len > 8) {
+            for (var x = 8; x > 0; x--) {
+                console.log(listyItems[x].innerHTML)
+                if (listyItems[x].innerHTML == element.innerHTML) {
+                    listyItems[x].remove();
+                    console.log("We are getting rid of duplicates");
+                    k = 1;
+                }
+            }
+            if (k == 0) {
+                var random = Math.floor(Math.random() * 9);
+                listyItems[random].remove();
+                console.log("We get rid of the first item.")
+            }
+        }
+        document.getElementById('target').appendChild(element)
+    }
 </script>
 </html>	
