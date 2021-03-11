@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html> <head> 
+	<title>Building a List</title>
+	<style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: red;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style></head>
+
+
+
+<body>
+	<h2>Venkat Sai Jarugula builds a list</h2>
+	<input type="text" id="newItem" name="newItem" >
+		<div class="flex-container" id="target">
+		  <div class="listy">row item 1</div>   
+		  <div class="listy">row item 2</div>  
+		  <div class="listy">row item 3</div>  
+		</div>
+	
+	<p> Press the button to create an new element of type div and then add it to the container.
+		</p>
+		<button onclick="makeNewDiv()">Add one</button>
+	
+	
+</body>
+<script>
+	function makeNewDiv(){
+		/* make the div and its text */
+		let element = document.createElement("div")
+		element.innerHTML = document.getElementById("newItem").value
+		element.className = "listy";
+		var listyItems = document.getElementsByClassName("listy");
+		
+if(listyItems.length>9){
+	for(let i=0;i<listyItems.length;i++){
+		if(element.innerHTML==listyItems[i]){
+			listyItems[i].remove();
+			console.log("Removing duplicate element"+ listyItems[i]);
+		}
+		else{
+			listyItems[0].remove();
+		}
+	}
+}
+		/* add it to the container */
+		document.getElementById('target').appendChild(element)
+		
+	}
+</script>
+</html>	
